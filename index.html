@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Naija RoyalSpin | Royal Casino</title>
+
 <style>
 :root {
   --black:#090b0a;
@@ -112,6 +113,85 @@ nav a {
   font-weight:bold;
 }
 .game button:hover {background:#0b9656}
+
+.slot-section {
+  display:none;
+  padding:35px 6%;
+}
+.slot-section.visible {display:block}
+.slot-box {
+  max-width:520px;
+  margin:auto;
+  padding:25px 18px;
+  background:linear-gradient(145deg,#18251b,#101512);
+  border:2px solid var(--gold);
+  border-radius:16px;
+  text-align:center;
+}
+.slot-box h2 {
+  color:var(--gold);
+  margin-top:0;
+}
+.balance {
+  color:var(--gold);
+  font-size:25px;
+  font-weight:bold;
+  margin:20px 0;
+}
+.reels {
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:25px 0;
+}
+.reel {
+  width:85px;
+  height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#080a09;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  font-size:48px;
+}
+.spin-button {
+  width:100%;
+  padding:16px;
+  background:var(--gold);
+  color:#111;
+  border:0;
+  border-radius:8px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.spin-button:disabled {
+  opacity:.5;
+  cursor:not-allowed;
+}
+.reset-button {
+  margin-top:12px;
+  padding:11px 20px;
+  background:var(--green);
+  color:white;
+  border:0;
+  border-radius:7px;
+  cursor:pointer;
+}
+.result {
+  min-height:45px;
+  margin:17px 0;
+  font-weight:bold;
+  color:var(--gold);
+  line-height:1.5;
+}
+.demo-note {
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+  margin-top:18px;
+}
 .info {
   background:#111b14;
   border:1px solid #34452f;
@@ -130,9 +210,11 @@ footer strong {color:var(--gold)}
 @media(max-width:500px) {
   nav a {margin-left:9px;font-size:12px}
   .logo {font-size:17px}
+  .reel {width:75px;height:82px;font-size:43px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -159,33 +241,70 @@ footer strong {color:var(--gold)}
   <p class="sub">Explore our free-to-play demonstration games.</p>
 
   <div class="games">
+
     <div class="game">
       <div class="emoji">🎰</div>
       <h3>Lucky Slots</h3>
-      <p>Slot game demonstration</p>
-      <button onclick="demo('Lucky Slots')">Try Demo</button>
+      <p>Working slot game demo</p>
+      <button onclick="openSlots()">Play Demo</button>
     </div>
 
     <div class="game">
       <div class="emoji">🃏</div>
       <h3>Blackjack</h3>
-      <p>Card game demonstration</p>
-      <button onclick="demo('Blackjack')">Try Demo</button>
+      <p>Coming soon</p>
+      <button onclick="demo('Blackjack')">Coming Soon</button>
     </div>
 
     <div class="game">
       <div class="emoji">🎡</div>
       <h3>Royal Roulette</h3>
-      <p>Roulette demonstration</p>
-      <button onclick="demo('Royal Roulette')">Try Demo</button>
+      <p>Coming soon</p>
+      <button onclick="demo('Royal Roulette')">Coming Soon</button>
     </div>
 
     <div class="game">
       <div class="emoji">🎲</div>
       <h3>Lucky Dice</h3>
-      <p>Dice game demonstration</p>
-      <button onclick="demo('Lucky Dice')">Try Demo</button>
+      <p>Coming soon</p>
+      <button onclick="demo('Lucky Dice')">Coming Soon</button>
     </div>
+
+  </div>
+</section>
+
+<section class="slot-section" id="slotSection">
+  <div class="slot-box">
+    <h2>🎰 LUCKY SLOTS</h2>
+    <p>Match three symbols to win demo credits!</p>
+
+    <div class="balance">
+      Credits: <span id="credits">100</span>
+    </div>
+
+    <div class="reels">
+      <div class="reel" id="reel1">🍒</div>
+      <div class="reel" id="reel2">🍋</div>
+      <div class="reel" id="reel3">💎</div>
+    </div>
+
+    <button class="spin-button" id="spinButton"
+      onclick="spinSlots()">
+      SPIN — 10 CREDITS
+    </button>
+
+    <div class="result" id="result">
+      Good luck! Try your first spin.
+    </div>
+
+    <button class="reset-button" onclick="resetSlots()">
+      RESET DEMO GAME
+    </button>
+
+    <p class="demo-note">
+      DEMO ONLY: Credits are virtual and have no monetary value.
+      No real-money bets, prizes, deposits or withdrawals.
+    </p>
   </div>
 </section>
 
@@ -212,9 +331,113 @@ footer strong {color:var(--gold)}
 </footer>
 
 <script>
-function demo(game) {
-  alert(game + " demonstration will be available soon!");
+let credits = 100;
+let spinning = false;
+
+const symbols = ["🍒","🍋","🍊","⭐","💎","7️⃣"];
+
+function updateCredits() {
+  document.getElementById("credits").textContent = credits;
 }
+
+function openSlots() {
+  const section = document.getElementById("slotSection");
+  section.classList.add("visible");
+  section.scrollIntoView({behavior:"smooth"});
+}
+
+function spinSlots() {
+  if (spinning) return;
+
+  if (credits < 10) {
+    document.getElementById("result").textContent =
+      "Not enough demo credits. Reset the game to start again.";
+    return;
+  }
+
+  spinning = true;
+  credits -= 10;
+  updateCredits();
+
+  const button = document.getElementById("spinButton");
+  button.disabled = true;
+  button.textContent = "SPINNING...";
+
+  const reels = [
+    document.getElementById("reel1"),
+    document.getElementById("reel2"),
+    document.getElementById("reel3")
+  ];
+
+  let count = 0;
+
+  const animation = setInterval(() => {
+    reels.forEach(reel => {
+      reel.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+    });
+
+    count++;
+
+    if (count >= 12) {
+      clearInterval(animation);
+      finishSpin(reels);
+    }
+  }, 100);
+}
+
+function finishSpin(reels) {
+  const result = document.getElementById("result");
+
+  const first = Math.floor(Math.random() * symbols.length);
+  const second = Math.floor(Math.random() * symbols.length);
+  const third = Math.floor(Math.random() * symbols.length);
+
+  reels[0].textContent = symbols[first];
+  reels[1].textContent = symbols[second];
+  reels[2].textContent = symbols[third];
+
+  if (first === second && second === third) {
+    const reward = symbols[first] === "7️⃣" ? 100 : 50;
+    credits += reward;
+    result.textContent =
+      "🎉 JACKPOT! You won " + reward + " demo credits!";
+  } else if (first === second || second === third || first === third) {
+    credits += 20;
+    result.textContent =
+      "✨ NICE! You won 20 demo credits!";
+  } else {
+    result.textContent =
+      "No match this time. Try again!";
+  }
+
+  updateCredits();
+
+  spinning = false;
+  const button = document.getElementById("spinButton");
+  button.disabled = false;
+  button.textContent = "SPIN — 10 CREDITS";
+}
+
+function resetSlots() {
+  if (spinning) return;
+
+  credits = 100;
+  updateCredits();
+
+  document.getElementById("reel1").textContent = "🍒";
+  document.getElementById("reel2").textContent = "🍋";
+  document.getElementById("reel3").textContent = "💎";
+
+  document.getElementById("result").textContent =
+    "Your demo game has been reset. Good luck!";
+}
+
+function demo(game) {
+  alert(game + " is coming soon!");
+}
+
+updateCredits();
 </script>
 
 </body>
