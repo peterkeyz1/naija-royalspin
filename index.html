@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naija RoyalSpin | Royal Casino</title>
+<style>
+:root {
+  --black:#090b0a;
+  --panel:#151b17;
+  --gold:#d9b45b;
+  --green:#087a45;
+  --white:#f8f5eb;
+  --muted:#a9b2aa;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:var(--black);
+  color:var(--white);
+  font-family:Arial,sans-serif;
+}
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 6%;
+  border-bottom:1px solid #29342c;
+}
+.logo {
+  font-size:21px;
+  font-weight:900;
+  color:var(--gold);
+}
+.logo span {color:#fff}
+nav a {
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+  font-size:14px;
+}
+.hero {
+  text-align:center;
+  padding:75px 20px 65px;
+  background:radial-gradient(ellipse at center,#17472d 0%,#101b14 45%,#090b0a 80%);
+}
+.hero small {
+  color:var(--gold);
+  letter-spacing:4px;
+}
+.hero h1 {
+  font-size:clamp(38px,8vw,66px);
+  margin:18px 0;
+}
+.hero h1 span {color:var(--gold)}
+.hero p {
+  color:#c3ccc4;
+  line-height:1.7;
+  max-width:550px;
+  margin:0 auto 28px;
+}
+.btn {
+  display:inline-block;
+  background:var(--gold);
+  color:#111;
+  padding:14px 25px;
+  border:0;
+  border-radius:7px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+}
+.btn:hover {background:#f0ce7c}
+.section {
+  padding:45px 6%;
+}
+.section h2 {
+  color:var(--gold);
+  margin-bottom:8px;
+}
+.sub {
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:25px;
+}
+.games {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:16px;
+}
+.game {
+  background:var(--panel);
+  border:1px solid #2b382e;
+  border-radius:12px;
+  padding:25px 12px;
+  text-align:center;
+}
+.game .emoji {font-size:43px}
+.game h3 {margin:13px 0 8px}
+.game p {
+  color:var(--muted);
+  font-size:12px;
+}
+.game button {
+  background:var(--green);
+  color:white;
+  border:0;
+  border-radius:5px;
+  padding:10px 17px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.game button:hover {background:#0b9656}
+.info {
+  background:#111b14;
+  border:1px solid #34452f;
+  padding:22px;
+  border-radius:12px;
+  line-height:1.7;
+}
+footer {
+  text-align:center;
+  padding:30px 15px;
+  border-top:1px solid #29342c;
+  color:var(--muted);
+  font-size:12px;
+}
+footer strong {color:var(--gold)}
+@media(max-width:500px) {
+  nav a {margin-left:9px;font-size:12px}
+  .logo {font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NAIJA <span>ROYALSPIN</span> 👑</div>
+  <nav>
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <small>WELCOME TO THE ROYAL EXPERIENCE</small>
+  <h1>PLAY LIKE <span>ROYALTY</span></h1>
+  <p>
+    Discover the excitement of Naija RoyalSpin.
+    Explore our casino-style games in a premium
+    black, gold and emerald-green environment.
+  </p>
+  <a href="#games" class="btn">EXPLORE GAMES</a>
+</section>
+
+<section class="section" id="games">
+  <h2>♛ Royal Game Lobby</h2>
+  <p class="sub">Explore our free-to-play demonstration games.</p>
+
+  <div class="games">
+    <div class="game">
+      <div class="emoji">🎰</div>
+      <h3>Lucky Slots</h3>
+      <p>Slot game demonstration</p>
+      <button onclick="demo('Lucky Slots')">Try Demo</button>
+    </div>
+
+    <div class="game">
+      <div class="emoji">🃏</div>
+      <h3>Blackjack</h3>
+      <p>Card game demonstration</p>
+      <button onclick="demo('Blackjack')">Try Demo</button>
+    </div>
+
+    <div class="game">
+      <div class="emoji">🎡</div>
+      <h3>Royal Roulette</h3>
+      <p>Roulette demonstration</p>
+      <button onclick="demo('Royal Roulette')">Try Demo</button>
+    </div>
+
+    <div class="game">
+      <div class="emoji">🎲</div>
+      <h3>Lucky Dice</h3>
+      <p>Dice game demonstration</p>
+      <button onclick="demo('Lucky Dice')">Try Demo</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About Naija RoyalSpin</h2>
+  <div class="info">
+    <strong style="color:#d9b45b">A royal experience awaits.</strong>
+    <p>
+      Naija RoyalSpin is being developed as a
+      premium online casino platform.
+      This development version is for demonstration
+      purposes only. All games are non-monetary.
+      No deposits, cash prizes or withdrawals are
+      available.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <strong>NAIJA ROYALSPIN</strong>
+  <p>Play responsibly. 18+ only.</p>
+  <p>Demo website — real-money gambling is not enabled.</p>
+  &copy; 2026 Naija RoyalSpin. All rights reserved.
+</footer>
+
+<script>
+function demo(game) {
+  alert(game + " demonstration will be available soon!");
+}
+</script>
+
+</body>
+</html>
